@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -36,10 +37,37 @@ public class SubActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,data);
         list.setAdapter(adapter);
 
-        data.add("paka");
-        data.add("android");
-        data.add("settings");
+        data.add("sharedpreference");
+        data.add("webview_youtube");
+        data.add("custom_navi");
+        data.add("camera");
+        data.add("recyclerView");
         adapter.notifyDataSetChanged();
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String str = (String) parent.getItemAtPosition(position);
+                if(str.equals("sharedpreference")){
+                    Intent intent = new Intent(SubActivity.this, sharedpreference.class);
+                    startActivity(intent);
+                } else if(str.equals("webview_youtube")){
+                    Intent intent = new Intent(SubActivity.this, webview.class);
+                    startActivity(intent);
+                } else if(str.equals("custom_navi")){
+                    Intent intent = new Intent(SubActivity.this, Navimenu.class);
+                    startActivity(intent);
+                } else if(str.equals("camera")){
+
+                } else if(str.equals("recyclerView")){
+
+                }
+            }
+        });
+
+
+
+
 
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
